@@ -14,7 +14,7 @@ struct ArticleDetailView: View {
     @ObservedObject private var viewModel = ArticleDetailViewModel()
     @State private var isLoading = false
     
-    init(story: Story) {
+    init(story: Article) {
         self.viewModel.story = story
     }
     
@@ -40,7 +40,7 @@ struct ArticleDetailView: View {
 
 #Preview {
     ArticleDetailView(
-        story: Story(
+        story: Article(
             title: "Why America's economy is soaring ahead of its rivals",
             url: "https://ourworldindata.org/data-insights/nearly-half-of-teenagers-globally-cannot-read-with-comprehension",
             author: "Cotterzz",

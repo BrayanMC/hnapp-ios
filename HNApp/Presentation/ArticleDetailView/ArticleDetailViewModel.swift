@@ -11,7 +11,7 @@ class ArticleDetailViewModel: ObservableObject {
     
     @Published var url: String = ""
     
-    var story: Story! {
+    var story: Article! {
         didSet {
             url = story.url
         }

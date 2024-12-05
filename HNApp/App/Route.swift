@@ -9,5 +9,5 @@ import Foundation
 
 enum Route: Hashable {
     case articleList
-    case articleDetail(Story)
+    case articleDetail(Article)
 }

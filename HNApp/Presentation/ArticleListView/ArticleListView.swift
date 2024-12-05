@@ -15,7 +15,7 @@ struct ArticleListView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             List {
-                ForEach(viewModel.stories, id: \.id) { story in
+                ForEach(viewModel.articles, id: \.id) { story in
                     ArticleCellView(story: story)
                         .onTapGesture {
                             coordinator.push(.articleDetail(story))
@@ -25,13 +25,11 @@ struct ArticleListView: View {
             }
             .scrollIndicators(.hidden)
             .refreshable {
-                Task {
-                    await viewModel.fetchArticles()
-                }
+                viewModel.fetchArticles()
             }
             .overlay(alignment: .center, content: {
                 Group {
-                    if viewModel.stories.isEmpty {
+                    if viewModel.articles.isEmpty {
                         Text("No hay artículos para mostrar ...")
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -48,9 +46,7 @@ struct ArticleListView: View {
             }
         }
         .onAppear {
-            Task {
-                await viewModel.fetchArticles()
-            }
+            viewModel.fetchArticles()
         }
     }
     
