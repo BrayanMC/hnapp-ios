@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ArticleCellView: View {
     
-    let story: Story
+    let story: Article
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -33,7 +33,7 @@ struct ArticleCellView: View {
 
 #Preview {
     ArticleCellView(
-        story: Story(
+        story: Article(
             title: "Christopher Hitchens and the Necessity of Universalism",
             url: "https://ourworldindata.org/data-insights/nearly-half-of-teenagers-globally-cannot-read-with-comprehension",
             author: "Cotterzz",
