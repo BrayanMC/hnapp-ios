@@ -6,13 +6,20 @@
 //
 
 import SwiftUI
+import Extensions
 
-struct CustomNavigationBar: View {
+public struct CustomNavigationBar: View {
     let title: String
     let showBackButton: Bool
     let backAction: () -> Void
     
-    var body: some View {
+    public init(title: String, showBackButton: Bool, backAction: @escaping () -> Void) {
+        self.title = title
+        self.showBackButton = showBackButton
+        self.backAction = backAction
+    }
+    
+    public var body: some View {
         HStack {
             if showBackButton {
                 Button(action: backAction) {
