@@ -41,6 +41,7 @@ struct ArticleDetailView: View {
 #Preview {
     ArticleDetailView(
         story: Article(
+            id: 42314797,
             title: "Why America's economy is soaring ahead of its rivals",
             url: "https://ourworldindata.org/data-insights/nearly-half-of-teenagers-globally-cannot-read-with-comprehension",
             author: "Cotterzz",

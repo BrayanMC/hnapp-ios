@@ -8,7 +8,7 @@
 import Foundation
 
 struct Article: Codable, Hashable {
-    var id = UUID().uuidString
+    let id: Int
     let title: String
     let url: String
     let author: String
@@ -22,9 +22,24 @@ struct Article: Codable, Hashable {
 extension Article {
     
     init(from response: NewsResponse.HitResponse) {
+        self.id = response.storyID ?? 1
         self.title = response.storyTitle ?? response.title ?? ""
         self.url = response.url ?? ""
         self.author = response.author ?? ""
         self.createdAt = response.createdAt ?? ""
+    }
+}
+
+
+extension Article {
+    
+    func mapTo() -> ArticleModel {
+        ArticleModel(
+            id: self.id,
+            title: self.title,
+            url: self.url,
+            author: self.author,
+            createdAt: self.createdAt
+        )
     }
 }

@@ -9,21 +9,21 @@ import SwiftUI
 
 struct ArticleCellView: View {
     
-    let story: Article
+    let article: Article
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(story.title)
+            Text(article.title)
                 .font(.interBold(size: 14))
                 .padding(.vertical, 4)
             HStack(spacing: 4) {
-                Text(story.author)
+                Text(article.author)
                     .font(.interRegular(size: 10))
                     .foregroundStyle(Color(UIColor.darkGray))
                 Text("-")
                     .font(.interRegular(size: 10))
                     .foregroundStyle(Color(UIColor.darkGray))
-                Text(story.timeElapsed)
+                Text(article.timeElapsed)
                     .font(.interRegular(size: 10))
                     .foregroundStyle(Color(UIColor.darkGray))
             }
@@ -33,7 +33,8 @@ struct ArticleCellView: View {
 
 #Preview {
     ArticleCellView(
-        story: Article(
+        article: Article(
+            id: 42314797,
             title: "Christopher Hitchens and the Necessity of Universalism",
             url: "https://ourworldindata.org/data-insights/nearly-half-of-teenagers-globally-cannot-read-with-comprehension",
             author: "Cotterzz",
