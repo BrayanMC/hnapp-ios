@@ -19,15 +19,15 @@ extension Font {
         }
     }
     
-    static func interRegular(size: CGFloat) -> Font {
+    public static func interRegular(size: CGFloat) -> Font {
         Inter.regular.font(size: size)
     }
     
-    static func interMedium(size: CGFloat) -> Font {
+    public static func interMedium(size: CGFloat) -> Font {
         Inter.medium.font(size: size)
     }
     
-    static func interBold(size: CGFloat) -> Font {
+    public static func interBold(size: CGFloat) -> Font {
         Inter.bold.font(size: size)
     }
 }

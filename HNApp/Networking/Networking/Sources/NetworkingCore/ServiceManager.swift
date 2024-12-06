@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import Helpers
+import NetworkingHelpers
 
 public final class ServiceManager {
     

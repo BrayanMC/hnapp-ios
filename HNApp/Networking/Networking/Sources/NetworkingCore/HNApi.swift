@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Helpers
+import NetworkingHelpers
 
 public enum HNApi: URLRequestConvertible {
     case news

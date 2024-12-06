@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct DateHelper {
+public struct DateHelper {
     
-    static func timeElapsedSince(dateString: String) -> String? {
+    public static func timeElapsedSince(dateString: String) -> String? {
         let dateFormatter = ISO8601DateFormatter()
         guard let date = dateFormatter.date(from: dateString) else {
             return nil

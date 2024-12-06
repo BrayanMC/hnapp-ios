@@ -4,18 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "Networking",
+    name: "Common",
     platforms: [
         .iOS(.v18)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "NetworkingCore",
-            targets: ["NetworkingCore"]),
+            name: "Extensions",
+            targets: ["Extensions"]
+        ),
         .library(
-            name: "NetworkingHelpers",
-            targets: ["NetworkingHelpers"]),
+            name: "CommonHelpers",
+            targets: ["CommonHelpers"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -25,15 +27,15 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "NetworkingCore",
-            dependencies: ["NetworkingHelpers"]
+            name: "Extensions",
+            dependencies: []
         ),
         .target(
-            name: "NetworkingHelpers",
+            name: "CommonHelpers",
             dependencies: []
         ),
         .testTarget(
-            name: "NetworkingTests",
+            name: "CommonTests",
             dependencies: []
         ),
     ]

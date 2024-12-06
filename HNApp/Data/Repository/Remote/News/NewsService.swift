@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Networking
+import NetworkingCore
 
 class NewsService: NewsServiceProtocol {
     

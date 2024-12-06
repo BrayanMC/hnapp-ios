@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CommonHelpers
 
 struct Article: Codable, Hashable {
     let id: Int

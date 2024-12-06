@@ -8,8 +8,8 @@
 import SwiftUI
 import Combine
 import SwiftData
-import Helpers
-import Networking
+import NetworkingCore
+import NetworkingHelpers
 
 class ArticleListViewModel: ObservableObject {
     
