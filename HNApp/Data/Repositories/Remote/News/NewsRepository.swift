@@ -8,7 +8,7 @@
 import Combine
 import NetworkingCore
 
-class NewsService: NewsServiceProtocol {
+class NewsRepository: NewsRepositoryProtocol {
     
     private let serviceManager: ServiceManager
     

@@ -8,7 +8,7 @@
 import SwiftData
 import Foundation
 
-final class ArticleDataSource {
+final class ArticleDataSource: ArticleDataSourceProtocol {
     
     private let modelContainer: ModelContainer
     private let modelContext: ModelContext

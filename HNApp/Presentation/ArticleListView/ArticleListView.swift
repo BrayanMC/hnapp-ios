@@ -10,7 +10,7 @@ import SwiftUI
 struct ArticleListView: View {
     
     @EnvironmentObject private var coordinator: Coordinator
-    @StateObject private var viewModel = ArticleListViewModel(dataSource: .shared)
+    @StateObject private var viewModel = ArticleListViewModel(dataSource: ArticleDataSource.shared)
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {

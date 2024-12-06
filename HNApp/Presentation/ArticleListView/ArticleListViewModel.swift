@@ -17,14 +17,12 @@ class ArticleListViewModel: ObservableObject {
     @Published var errorMessage: String?
     
     private var cancellables = Set<AnyCancellable>()
-    private let newsService: NewsServiceProtocol
+    private let newsService: NewsRepositoryProtocol
+    private let articleDataSource: ArticleDataSourceProtocol
     
-    private let dataSource: ArticleDataSource
-    
-    init(dataSource: ArticleDataSource) {
-        let serviceManager = ServiceManager()
-        self.newsService = NewsService(serviceManager: serviceManager)
-        self.dataSource = dataSource
+    init(dataSource: ArticleDataSourceProtocol) {
+        self.newsService = NewsRepository(serviceManager: ServiceManager())
+        self.articleDataSource = dataSource
     }
     
     func fetchArticles() {
@@ -66,7 +64,7 @@ class ArticleListViewModel: ObservableObject {
     }
     
     private func fetchArticlesFromLocal() {
-        let allArticles = dataSource.fetchAllArticles()
+        let allArticles = articleDataSource.fetchAllArticles()
         let savedArticles = allArticles.filter { !$0.isDeleted }
         
         self.articles = savedArticles.map { articleModel in
@@ -87,7 +85,7 @@ class ArticleListViewModel: ObservableObject {
     }
 
     private func processFetchedArticles(_ articles: [Article]) {
-        let savedArticles = dataSource.fetchAllArticles()
+        let savedArticles = articleDataSource.fetchAllArticles()
         let savedArticleIDs = Set(savedArticles.map { $0.id })
         let deletedArticleIDs = Set(savedArticles.filter { $0.isDeleted }.map { $0.id })
         
@@ -101,7 +99,7 @@ class ArticleListViewModel: ObservableObject {
     }
 
     private func saveArticles(_ articles: [Article]) {
-        let savedArticles = dataSource.fetchAllArticles()
+        let savedArticles = articleDataSource.fetchAllArticles()
         let deletedArticleIDs = Set(savedArticles.filter { $0.isDeleted }.map { $0.id })
         
         articles.forEach { article in
@@ -114,15 +112,15 @@ class ArticleListViewModel: ObservableObject {
                         author: article.author,
                         createdAt: article.createdAt
                     )
-                    dataSource.addArticle(article: model)
+                    articleDataSource.addArticle(article: model)
                 }
             }
         }
     }
 
     func delete(article: Article) {
-        if let modelToDelete = dataSource.fetchAllArticles().first(where: { $0.id == article.id }) {
-            dataSource.updateArticleIsDeleted(article: modelToDelete)
+        if let modelToDelete = articleDataSource.fetchAllArticles().first(where: { $0.id == article.id }) {
+            articleDataSource.updateArticleIsDeleted(article: modelToDelete)
             fetchArticlesFromLocal()
         } else {
             print("Article with ID: \(article.id) not found")
