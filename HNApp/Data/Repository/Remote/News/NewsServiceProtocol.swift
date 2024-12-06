@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Networking
 
 protocol NewsServiceProtocol {
     func fetchArticles() -> AnyPublisher<NewsResponse?, ServiceError>

@@ -7,16 +7,21 @@
 
 import Foundation
 import Combine
+import Helpers
 
-final class ServiceManager {
+public final class ServiceManager {
+    
+    public init() {
+        // empty
+    }
     
     private var cancellables = Set<AnyCancellable>()
     
-    func request<T: Codable>(_ request: URLRequestConvertible, type: T.Type) -> AnyPublisher<T?, ServiceError> {
+    public func request<T: Codable>(_ request: URLRequestConvertible, type: T.Type) -> AnyPublisher<T?, ServiceError> {
         let urlRequest = request.urlRequest()
         print("Starting request: \(urlRequest.url?.absoluteString ?? "Unknown URL")")
         
-        return Reachability.shared.isNetworkReachable()
+        return NetworkMonitor.shared.isNetworkReachable()
             .flatMap { isReachable -> AnyPublisher<T?, ServiceError> in
                 if isReachable {
                     return URLSession.shared.dataTaskPublisher(for: urlRequest)

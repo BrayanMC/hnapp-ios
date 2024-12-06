@@ -8,6 +8,8 @@
 import SwiftUI
 import Combine
 import SwiftData
+import Helpers
+import Networking
 
 class ArticleListViewModel: ObservableObject {
     
@@ -26,7 +28,7 @@ class ArticleListViewModel: ObservableObject {
     }
     
     func fetchArticles() {
-        Reachability.shared.isNetworkReachable()
+        NetworkMonitor.shared.isNetworkReachable()
             .sink { isReachable in
                 if isReachable {
                     self.fetchArticlesFromNetwork()

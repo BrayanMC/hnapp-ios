@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol URLRequestConvertible {
+public protocol URLRequestConvertible {
     var baseURL: URL { get }
     var path: String { get }
     var queryItems: [URLQueryItem]? { get }
@@ -18,7 +18,7 @@ protocol URLRequestConvertible {
 
 extension URLRequestConvertible {
     
-    func urlRequest() -> URLRequest {
+    public func urlRequest() -> URLRequest {
         var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
         components.queryItems = queryItems
         
