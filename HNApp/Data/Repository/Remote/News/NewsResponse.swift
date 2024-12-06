@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - ArticleResponse
+// MARK: - NewsResponse
 struct NewsResponse: Codable {
     let hits: [HitResponse]?
     let hitsPerPage, nbHits, nbPages, page: Int?

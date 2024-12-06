@@ -10,15 +10,15 @@ import SwiftUI
 struct ArticleListView: View {
     
     @EnvironmentObject private var coordinator: Coordinator
-    @StateObject private var viewModel = ArticleListViewModel()
+    @StateObject private var viewModel = ArticleListViewModel(dataSource: .shared)
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             List {
-                ForEach(viewModel.articles, id: \.id) { story in
-                    ArticleCellView(story: story)
+                ForEach(viewModel.articles, id: \.id) { article in
+                    ArticleCellView(article: article)
                         .onTapGesture {
-                            coordinator.push(.articleDetail(story))
+                            coordinator.push(.articleDetail(article))
                         }
                 }
                 .onDelete(perform: onDelete)
@@ -51,7 +51,10 @@ struct ArticleListView: View {
     }
     
     private func onDelete(at indexSet: IndexSet) {
-        
+        for index in indexSet {
+            let article = viewModel.articles[index]
+            viewModel.delete(article: article)
+        }
     }
 }
 
